@@ -1,0 +1,30 @@
+# Définition du pipeline CI/CD
+stages:
+  - build
+  - test
+  - deploy
+
+# Définition des jobs
+build:
+  stage: build
+  image: node:14-alpine
+  script:
+    - npm install
+
+test:
+  stage: test
+  image: node:14-alpine
+  script:
+    - npm test
+
+deploy:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t my-node-app .
+    - docker tag my-node-app $CI_REGISTRY_IMAGE/my-node-app:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE/my-node-app:$CI_COMMIT_SHA
+  only:
+    - master
