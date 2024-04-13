@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
 
 const salleSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
+    nom: {
+        type: String
+        
     },
-    capacity: {
-        type: Number,
+    capacite: {
+        type: Number
     },
-    available: {
+    dispo: {
         type: Boolean,
-        default: true
-    }
+        }
 });
 
 module.exports = mongoose.model("Salle", salleSchema);

@@ -32,7 +32,7 @@ exports.addSalle = async (req, res) => {
     try {
         const { nom, capacite, dispo } = req.body;
         if (!nom || !capacite) {
-            return res.status(400).json({ message: "Le nom et la capacité sont requis" });
+            return res.status(400).json({ message: "Le nom et la capacité sont requis nn" });
         }
         const salle = await Salle.create({ nom, capacite, dispo });
         res.status(201).json(salle);
